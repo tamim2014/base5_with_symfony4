@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        <link href="/css/topnav_min.css" rel="stylesheet" title="Style" />
+        <link rel="stylesheet" href="/css/style.css"/>
+        <link href="/css/accueil.css" rel="stylesheet" title="Style" />
+        <link href="/css/base4.css" rel="stylesheet" title="Style" />
+
+        <!-- on ajoute la ceinture :  menu topnav  -->
+
+        <link href="/css/topnav.css"     rel="stylesheet" title="Style" />
+        <link href="/css/topnav_min.css" rel="stylesheet" title="Style" />
+
+
+        <!--  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>  -->
+        <script src="/js/ajax_googleapis_angular1.6.9.min.js"></script> <!-- AFFICHAGE DE LA SAISIE EN SIMULTANEE -->
+        <script  src="/js/script.js"></script>
+
+
+        <!--  menu accordeon -->
+            <link href="/css/menu2/menu.css" rel="stylesheet" title="StyleM" />
+            
+            <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+            <script src="/js/libs_ajax_jquery_min_3.3.1-submit_load.js"></script>
+            
+            
+            <script src="/js/menu2/jquery.js"> </script> 
+            <script src="/js/menu2/menu_accordeon.js"> </script>
+            <script src="/js/menu2/menu_ajax.js"> </script>
+            <script src="/js/capture_items_passeport_MV.js"></script><!--Menu Vertical  affiche une vue BD dans la div article -->
+            <script src="/js/capture_items_passeport_MH.js"></script><!--Menu Horizontal  affiche une vue BD dans la div article -->
+            <script src="/js/capture_recherche_passeport.js"></script>
+            <script src="/js/capture_recherche2_passeport.js"></script>
+            <script src="/js/jquery.js"></script>
+            <script src="/js/lectureBD.js"></script>
+            <script src="/js/base4_menu_accordeon.js"></script>
+            <script src="/js/afficher_la_saisie(passeport).js"></script>
+            <script src="/js/accordeon_perso.js"></script>
+
+        {% block stylesheets %}{% endblock %}
+    </head>
+
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
+
