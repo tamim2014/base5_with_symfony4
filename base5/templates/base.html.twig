@@ -16,6 +16,7 @@
 
 
         <!--  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>  -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
         <script src="/js/ajax_googleapis_angular1.6.9.min.js"></script> <!-- AFFICHAGE DE LA SAISIE EN SIMULTANEE -->
         <script  src="/js/script.js"></script>
 
@@ -43,8 +44,20 @@
         {% block stylesheets %}{% endblock %}
     </head>
 
-    <body>
+    <body ng-app="myApp">
+ 
         {% block body %}{% endblock %}
+                
+        <script src="/js/ajax_googleapis_angular1.6.9.min.js"></script> <!-- AFFICHAGE DE LA SAISIE EN SIMULTANEE -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.min.js"></script>
+
+        <script>
+                var  myAppModule = angular.module("myApp", ["ngSanitize"]);         
+                myAppModule.config(function($interpolateProvider){
+                  $interpolateProvider.startSymbol('[[').endSymbol(']]');           
+                });
+         
+        </script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

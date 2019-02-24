@@ -47,8 +47,11 @@ class Base5Controller extends AbstractController
             //return $this->redirectToRoute('suite_article', ['id'=>$article->getId()]);
         }
         //dump($passeport);
+ 
+    
         return $this->render('base5/index.html.twig',[
-            'formPasseport'=>$form->createView()
+            'formPasseport'=>$form->createView(),
+            'lastName' =>$passeport->getPrenomDemandeur()             
         ]); 
     }
 }

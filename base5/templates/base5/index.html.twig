@@ -2,6 +2,7 @@
 
 {% block title %}Hello Base5Controller!{% endblock %}
 
+
 {% block body %}
 <!-- build an embossed frame for div yivawo -->	
 <style>
@@ -42,7 +43,7 @@
 </style>
 
 <div ng-app="myApp" >
-    <div id="wrap">
+    <div id="wrap" ng-controller="myIndexCtrl">
         <!--  creux du haut -->
         <div id="header"   >	
             <div  class="hollowTop"> 
@@ -249,8 +250,8 @@
             <span type="text"  id="search_span" style="  margin-right:12px; margin-top:10px; float:right; " > <img src="/img/search-icon.png"  />  </span>
         </div><!-- fin div#nav -->
 
-        <div id="main">
-            <div id="navgauche">
+        <div id="main" >
+            <div id="navgauche" >
                 {{ form_start(formPasseport) }}
                     <div class="section">
                         <br>
@@ -258,22 +259,24 @@
                         {{form_widget(formPasseport.nom_demandeur , {'attr':  {'placeholder':"Nom", 'ng-model':"firstName", 'id':"afficher_pendant_la_saisaie_passeport" }})}}
                         {{form_widget(formPasseport.prenom_demandeur , {'attr': {'placeholder':"Prenom", 'ng-model':"lastName" }})}}
                         {{form_widget(formPasseport.montant , {'attr': {'placeholder':"Montant", 'ng-model':"amount" }})}}
+                        
                     </div>
                     <div class="section">
                         <br>
                         {# {{form_widget(formPasseport.observation , {'attr': {'placeholder':"observation", 'ng-model':"observation", 'title':"observation" }})}}  #} 
-                        {{form_widget(formPasseport.observation )}}                         
-                        {{form_widget(formPasseport.lot )}} 
+                        {{form_widget(formPasseport.observation , {'attr': {'placeholder':"observation", 'ng-model':"observation", 'title':"observation" }} )}}                         
+                        {{form_widget(formPasseport.lot , {'attr': {'placeholder':"lot", 'ng-model':"lot" }} )}} 
                         <!-- date_export --> 				
                         {{form_widget(formPasseport.date , {'attr': { 'ng-model':"date", 'class':"date_export" }})}} 
+                        
                     </div>
                     <div class="section">		                    
-                        {{ form_widget(formPasseport.dossier_expedie, {'attr': { 'id':"dossier_expedie", 'class':"label_envoi" }})}}    <span class="span_label">Envoi</span> {{form_widget(formPasseport.date_expedie , {'attr': { 'ng-model':"envoi", 'class':"tracked_date", 'id':"date_expedie" }})}}
+                        {{ form_widget(formPasseport.dossier_expedie, {'attr': { 'id':"dossier_expedie", 'class':"label_envoi"  }})}}    <span class="span_label">Envoi</span> {{form_widget(formPasseport.date_expedie , {'attr': { 'ng-model':"envoi", 'class':"tracked_date", 'id':"date_expedie" }})}}
                         {{ form_widget(formPasseport.passeport_arrive, {'attr': { 'id':"passeport_arrive", 'class':"label_retour" }})}} <span class="span_label">Retour</span> {{form_widget(formPasseport.date_arrive , {'attr': { 'ng-model':"retour", 'class':"tracked_date", 'id':"date_arrive" }})}} 
                         {{ form_widget(formPasseport.passeport_livre, {'attr': { 'id':"passeport_livre", 'class':"label_distrib" }})}}  <span class="span_label">Distrib</span>{{form_widget(formPasseport.date_livre , {'attr': { 'ng-model':"distribution", 'class':"tracked_date", 'id':"date_livraison" }})}}
                     </div>
         
-                    
+                   
                     <div class="section" >		                                   
                         <button type="submit" style="background-color: #D4D7C4;  height: 30px; width:150px;">
                            <a href="#">Enregistrer</a>        
@@ -285,23 +288,27 @@
                         <input type="button"  id="recherche"  name="" value="Chercher" style="background-color: #D4D7C4;  height: 30px; "    />
                         <br><br>
                       {#  {{form_widget(formPasseport.nom_demandeur , {'attr': {'placeholder':"Nom (ou Prénom)", 'id':"titulaire", 'style':"width:150px; height:30px;" }})}} #}
-                    </div>                                        
+                    </div> 
+                                                         
                 {{ form_end(formPasseport) }} 
+                
             </div> <!-- fin navgauche -->
-
+           
             <!-- debut article(affichage resultat de la base de donnée) -->
-	        <div id="article">	         
+	        <div id="article" >	
+                           
                 <div id="yivawo"   >		   
-                   <div  ng-controller="datCtrl" style="text-align: left; margin-left:2.5%;">
-                        Date du jour ?
+                   <div   style="text-align: left; margin-left:2.5%;">
+                        [[ today | date ]]
                     </div>
                    <div style="text-align: center; margin-top:-20px; ">
-                       {{" LOT:  "  }} 
+                       LOT:[[lot]]  
                     </div>			 			
-                   <table >
+                   <table  >
+                        
                        <tr><th>NOM</th><th>PRENOM</th><th> ENVOI </th><th>RETOUR  </th><th>DISTRIBUTION </th><th>observation</th><th> €  </th> <th>DATE </th>  <tr>							 
-                       <tr><td>firstName</td><td>lastName</td><td>envoi </td><td>retour</td><td>distribution  </td><td>observation</td><td>amount</td><td> date </td></tr>               
-                       <tr><td></td><td></td><td>  </td><td>  </td><td> </td><td><span style="color:green;  font-size: 17px; font-style: bold;" >TOTAL :</span> </td><td><span style="color:green;  font-size: 17px; font-style: bold;" >amount</span> </td><td> </td>  <tr> 
+                       <tr><td>[[firstName]]</td><td > [[lastName]] </td><td>[[envoi| date:"dd.MM.y"]] </td><td>[[retour| date:"dd.MM.y"]]</td><td>[[distribution| date:"dd.MM.y"]]  </td><td>[[observation]]</td><td>[[amount]]</td><td>[[date]]  </td></tr>               
+                       <tr><td></td><td></td><td>  </td><td>  </td><td> </td><td><span style="color:green;  font-size: 17px; font-style: bold;" >TOTAL :</span> </td><td><span style="color:green;  font-size: 17px; font-style: bold;" >[[amount]]</span> </td><td> </td>  <tr> 
                    </table>			
                 </div> <!-- #yivawo -->     			 
             </div> <!-- fin #article -->
@@ -340,14 +347,29 @@
         <div id="footer"></div>
     </div><!-- wrap -->
 </div><!-- ng-app -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+-->       
 
-<script>
-    // to use AngularJS for the current date
-    var app = angular.module('myApp', []);
-    app.controller('datCtrl', function($scope) {
-    $scope.today = new Date();
-    });
-   
-</script>
 
+{% endblock %}
+
+{% block javascripts  %}
+  
+   <!-- LE CONTROLEUR -->
+ 
+   <script>
+        myAppModule.controller( "myIndexCtrl", ["$scope",function($scope){
+            $scope.firstName = "";
+            $scope.lastName = "";
+            $scope.amount = "";
+            $scope.envoi = "";
+            $scope.retour = "";
+            $scope.distribution ="";
+            $scope.observation = "code";
+            $scope.lot = "";
+            $scope.today = new Date();
+        }]);
+
+   </script>
 {% endblock %}
